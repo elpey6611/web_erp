@@ -1,0 +1,35 @@
+{
+    "Empleados": [
+        {
+            "id": 1,
+            "Nombre": "Nancy",
+            "Apellido": "Santos",
+            "Puesto": "Analista Seguros"
+
+        },
+
+        {
+            "id": 2,
+            "Nombre": "Javier",
+            "Apellido": "Santos",
+            "Puesto": "Pastor Evangelico"
+
+        },
+        
+        {
+            "id": 3,
+            "Nombre": "Madai",
+            "Apellido": "Trujillo",
+            "Puesto": "Analista Seguros"
+
+        },
+        
+        {
+            "id": 4,
+            "Nombre": "Oscar",
+            "Apellido": "Miran",
+            "Puesto": "Operador de Taxi"
+
+        }        
+    ]
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda</title>
+    <link rel="stylesheet" href="..css/noamalize.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">    
+    <link rel="stylesheet" href="../css/style.css">
+
+</head>
+<body>
+    <header class="header">
+       <a href="../Index.html">
+          <img class ="header__logo" src="../Img/Logo.png" alt="Logotipo">
+       </a>
+    </header>
+    <nav class="navegacion">
+        <a class="navegacion__enlace --navegacion__enlace--activo" href="../Index.html">Tienda</a>
+        <a class="navegacion__enlace" href="../Scr/frm_nosotros.html">Nosotros</a>
+    </nav>
+
+
+   <main class="Contenedor">
+         <h1>React JS</h1>
+         <div class="camisa">
+              <img class="camisa__imagen" src="../Img/3.jpg" alt="Imagen del Producto">
+              <div class="camisa__contenido">
+                  <p>
+                    Descripcion del Proucto
+                  </p>
+                  <form class="formulario">
+                        <select class="formulario__campo">
+                            <option disabled selected>--Seleccionar Talla</option>
+                            <option>Chica</option>
+                            <option>mediana</option>
+                            <option>Xl</option>
+                            <option>2Xl</option>
+                            <option>3Xl</option>
+                        </select>
+                        <input class="formulario__campo" type="number" placeholder="Cantidad" min="1">
+                        <input class="formulario__submit" type="submit" value="Agregar al Carrito"> 
+                  </form>
+              </div>
+         </div>
+   </main>
+
+
+    <footer class = "footer">
+        <p class = "footer__texto">Front End Store - Todos los Derechos Reservador 2024 (Ramc/Prmg)</p>
+    </footer>
+</body>
+</html>

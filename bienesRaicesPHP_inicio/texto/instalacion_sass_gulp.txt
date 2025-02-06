@@ -1,0 +1,47 @@
+npm install --save--dev gulp gulp-sass gulp-autoprefixer
+
+en caso que no se ejecute el npm
+buscar PowerShell click alli y luego 
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+Set-ExecutionPolicy -Scope CurrentUser unrestricted
+
+
+npm install
+
+npm install gulp-sass
+
+npm install gulp
+
+npm install -g gulp
+
+npm run dev
+
+
+
+
+para configurar la cantidad maxima en byte de archivos
+que manejara php buscamos el el archivo php.ini
+y dentro de el buscar 
+upload_max = 40m o mas
+
+y 
+
+post_max y de igual forma aumentarlo a 40M o mas
+
+max_execution_time = 300 o mas
+
+memory_limit =128M o mas
+
+
+
+
+en caso de generar errores de sass
+utilizar lo siguiente
+npm install -g n
+rm -R node_modules/ 
+npm install node-sass@3.3.3 
+npm -g install node-gyp@3
+npm uninstall gulp-sass
+npm install gulp-sass@2 
+npm rebuild node-sass 
+ionic setup sass 

@@ -1,0 +1,32 @@
+/*@use 'variables as v';*/
+/*@use "base/variables" as vp;
+@forward 'base/normalize';
+*/
+@forward 'base';
+@forward 'layout';
+
+
+/*h1{
+    font-family: $fuente_principal;
+
+}
+
+p{
+    font-family: $fuente_principal;
+}
+
+a{
+    font-family: $fuente_principal;
+}
+*/
+
+
+/* utilizar cuando ocupes 1 variable especifica*/
+/*@use 'base/variables' as vpub;*/
+
+/*utilizar cuando se requiera todo el contenido de una hoja de estilos*/
+/*@forward 'base/normalize';*/
+
+
+/*@forward 'base';*/
+

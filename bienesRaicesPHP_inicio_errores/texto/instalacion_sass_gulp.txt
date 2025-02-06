@@ -1,0 +1,21 @@
+npm install --save--dev gulp gulp-sass gulp-autoprefixer
+
+en caso que no se ejecute el npm
+buscar PowerShell click alli y luego 
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+Set-ExecutionPolicy -Scope CurrentUser unrestricted
+
+
+npm install
+
+npm install gulp-sass
+
+npm install gulp
+
+npm install -g gulp
+
+npm run dev
+
+
+
+en caso de que sass genere algun problema utilizar el siguiente comando
