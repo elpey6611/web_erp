@@ -14,11 +14,11 @@ incluirTemplate('header', $miruta);
 //     header('Location: /');
 // }
 
-// $id = $_GET['id'];
-// if (!$id) {
-//     header('Location: ' . '\admin');
-// }
-$id = "000001";
+$id = $_GET['id'];
+if (!$id) {
+    header('Location: ' . '../admin/index.php');
+}
+
 
 $vtitulo = "";
 $vprecio = "";
@@ -34,15 +34,17 @@ $cnn = conectardb();
 //propiedades
 $vsql0 = "";
 $vsql0 = "select * from tb_propiedades";
-//$vsql0 .= " where fcod_propiedades ='" .  $id . "'";
 $vsql0 .= " where fcod_propiedades ='" .  $id . "'";
 $resul_prop = mysqli_query($cnn, $vsql0);
 $rst_prop = mysqli_fetch_assoc($resul_prop);
 
 $vtitulo = $rst_prop['ftitulo'];
 $vprecio = $rst_prop['fprecio'];
-$vimagen = $rst_prop['fnombre_imagen'];
-$vruta_imagen =  'new_imagenes//' . $vimagen;
+$vnom_original_imagen = "";
+$vimagen_tabla = $rst_prop['fnombre_imagen'];
+$name_archivo_origen = $rst_prop['fnombre_imagen'];
+$vnom_original_imagen = $name_archivo_origen;
+$vruta_imagen =  RUTA_NEW_IMG . "/" . $vimagen_tabla;
 $vdescripcion = $rst_prop['fdescripcion'];
 $vhabitaciones = $rst_prop['fhabitaciones'];
 $vwc = $rst_prop['fwc'];
@@ -60,16 +62,17 @@ $verrores = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //
-    $vimagen0 = $_FILES['txtfimagen']["full_path"];
-    if (strlen($vimagen0) > 0) {
-        $archivo_origen = $_FILES['txtfimagen']['tmp_name'];
-        $vnom_original_imagen = $_FILES['txtfimagen']['tmp_name'];
-        $nombre_arch = $_FILES['txtfimagen']["name"];
+    if (strlen($_FILES['txtfimagen']["tmp_name"]) > 0) {
+        $archivo_origen = $_FILES['txtfimagen']["tmp_name"];
+        //$vnom_imagen_update = $_FILES['txtfimagen']['tmp_name'];
+        //$nombre_arch_imgupdate = $_FILES['txtfimagen']["name"];
+        $vnom_original_imagen = $_FILES['txtfimagen']["name"];
+        $new_img = $_FILES['txtfimagen']["tmp_name"];
         $nombre_destino = "";
-        $parte = "." . substr($nombre_arch, strrpos($nombre_arch, '.') + 1);
+        $parte = "." . substr($new_img, strrpos($new_img, '.') + 1);
         $nombre_destino =  str_pad($id, 6, "0", STR_PAD_LEFT) .  $parte;  //. substr($nombre_arch, strrpos($nombre_arch, '.') + 1);
     } else {
-        $nombre_destino = $vimagen;
+        $nombre_destino = $vimagen_tabla;
     }
     //asignando variables
     $vtitulo = mysqli_real_escape_string($cnn, $_POST['txtftitulo']);
@@ -120,30 +123,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($vcontinue) {
-        $carpetaImagenes = 'new_imagenes';
-        $carpetaImagenes1 = 'new_imagenes\\' . $nombre_destino;
+        $carpetaImagenes = RUTA_ROOT . 'new_imagenes/';
+        $carpetaImagenes1 = RUTA_ROOT . 'new_imagenes/' . $vimagen_tabla;
         //eliminamos el archivo de la carpeta
-        if (strlen($vimagen0) > 0) {
+        if (strlen($archivo_origen) > 0) {
             //borramos el archivo anterior
-
-            unlink($carpetaImagenes1);
+            if (file_exists($carpetaImagenes1)) {
+                unlink($carpetaImagenes1);
+            }
             if (!is_dir($carpetaImagenes)) {
                 mkdir($carpetaImagenes);
             }
             // //subir imagen
             $vnom_img = "";
+            $vnom_img = $archivo_origen;
+            // 
             $vnom_img1 = $vimagen;
-            // //ejemplos para generar numero aleatorios
-            $vnom_img = $carpetaImagenes . "//" . $nombre_destino;
-            $vnom_img1 = $nombre_destino;
-            //echo $vimagen0;
-            //echo "     " . $archivo_origen;
-            //echo "     " . $nombre_arch;
-            //echo "ruta completa de archivo destino     " . $vnom_img;
-            //exit;
-            move_uploaded_file($archivo_origen, $vnom_img);
+            $vnom_img1 = $carpetaImagenes1;
+
+            move_uploaded_file($vnom_img, $vnom_img1);
         } else {
-            $vnom_img1 = $nombre_destino;
+            //$vnom_img1 = $nombre_destino;
         }
         //update
         $vsql = "";
@@ -155,14 +155,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $vsql .= " fwc=" . $vwc . ",";
         $vsql .= " festacionamiento=" . $vestacionamientos . ",";
         $vsql .= " fruta_imagen='" . $carpetaImagenes1 . "',";
-        $vsql .= " fnombre_imagen='" . $vnom_img1 . "',";
+        $vsql .= " fnombre_imagen='" . $name_archivo_origen . "',";
         $vsql .= " fnom_original_imagen='" . $vnom_original_imagen . "',";
         $vsql .= " fcreacion='" . $vcreacion . "',";
         $vsql .= " tb_vendedores_fcod_vend='" . $vvendedor . "'";
         $vsql .= " where fcod_propiedades='" . $id . "'";
         $vrecno = fnl_aud($vsql, $cnn);
         if ($vrecno) {
-            header('Location: ' . '\admin');
+            header('Location: ' . '../admin/index.php');
+            header('Location: ' . '../admin/index.php');
         }
     }
 }
@@ -176,9 +177,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <a href="<?php echo RUTA_ADMIN . 'index.php'; ?>" class="boton boton-verde">Volver</a>
 
     <?php foreach ($verrores as $error): ?>
-    <div class="alerta error">
-        <?php echo $error; ?>
-    </div>
+        <div class="alerta error">
+            <?php echo $error; ?>
+        </div>
     <?php endforeach; ?>
     <form class="formulario" method="POST" enctype="multipart/form-data">
         <fieldset>
@@ -223,9 +224,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <select value="<?php echo $vvendedor; ?>" name="txtfvendedor">
                 <option value="">--Seleccione--</option>
                 <?php while ($rowv = mysqli_fetch_array($rst_vend)): ?>
-                <option <?php echo $vvendedor === $rowv['fcod_vend'] ? 'selected' : ''; ?>
-                    value="<?php echo $rowv['fcod_vend']; ?>">
-                    <?php echo $rowv['fnombre_vend'] . " " . $rowv['fapellido_vend']; ?></option>
+                    <option <?php echo $vvendedor === $rowv['fcod_vend'] ? 'selected' : ''; ?>
+                        value="<?php echo $rowv['fcod_vend']; ?>">
+                        <?php echo $rowv['fnombre_vend'] . " " . $rowv['fapellido_vend']; ?></option>
                 <?php endwhile; ?>
             </select>
         </fieldset>

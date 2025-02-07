@@ -103,16 +103,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($vcontinue) {
         //creamos la carpeta
         $carpetaImagenes = RUTA_ROOT . 'new_imagenes';
-        $carpetaImagenes1 = RUTA_ROOT .'new_imagenes/';
+        $carpetaImagenes1 = RUTA_ROOT . 'new_imagenes/';
         if (!is_dir($carpetaImagenes)) {
-            mkdir($carpetaImagenes, 0777,true);
+            mkdir($carpetaImagenes, 0777, true);
         }
         //subir imagen
         //ejemplos para generar numero aleatorios
         //$vnom = md5(uniqid(rand(),true)) . "jpg";
         $vnom_img = $carpetaImagenes . "//" . $nombre_destino;
         $vnom_img1 = $nombre_destino;
-         
+
         move_uploaded_file($archivo_origen, $vnom_img);
         //insert
         $vsql = "";
@@ -157,9 +157,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <a href="<?php echo RUTA_INDEX; ?>" class="boton boton-verde">Volver</a>
 
     <?php foreach ($verrores as $error): ?>
-    <div class="alerta error">
-        <?php echo $error; ?>
-    </div>
+        <div class="alerta error">
+            <?php echo $error; ?>
+        </div>
 
     <?php endforeach; ?>
 
@@ -204,9 +204,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <select value="<?php echo $vvendedor; ?>" name="txtfvendedor">
                 <option value="">--Seleccione--</option>
                 <?php while ($rowv = mysqli_fetch_array($recno_vend)): ?>
-                <option <?php echo $vvendedor === $rowv['fcod_vend'] ? 'selected' : ''; ?>
-                    value="<?php echo $rowv['fcod_vend']; ?>">
-                    <?php echo $rowv['fnombre_vend'] . " " . $rowv['fapellido_vend']; ?></option>
+                    <option <?php echo $vvendedor === $rowv['fcod_vend'] ? 'selected' : ''; ?>
+                        value="<?php echo $rowv['fcod_vend']; ?>">
+                        <?php echo $rowv['fnombre_vend'] . " " . $rowv['fapellido_vend']; ?></option>
                 <?php endwhile; ?>
             </select>
         </fieldset>

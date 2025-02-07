@@ -19,6 +19,7 @@
     "sharp": "^0.33.3"
   },
   "dependencies": {
+    "gulp-sass": "^6.0.0",
     "node-gyp": "^3.8.0",
     "node-sass": "^9.0.0"
   }

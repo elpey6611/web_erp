@@ -16,12 +16,12 @@
 
   table.propiedades {
     margin-top: 4rem;
-    width: 100%;
+    width: 106%;
     border-spacing: 0;
   
     thead {
       background-color: $verde;
-  
+      width: 100%;
       th {
         color: $blanco;
         padding: 2rem;
@@ -37,3 +37,4 @@
     width: 10rem;
   }
   
+
