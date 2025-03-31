@@ -1,0 +1,33 @@
+.boton-amarillo {
+    @include boton($amarillo, inline-block);
+    text-align: center;
+}
+
+.boton-amarillo-block {
+    @include boton($amarillo, block);
+    text-align: center;
+}
+
+.boton-verde {
+    @include boton($verde, inline-block);
+    text-align: center;
+}
+
+.boton-rojo-block
+{
+
+    @include boton($rojo, inline-block);
+    width: 100%;
+    height: 3.5rem;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.boton-azul-block
+{
+    @include boton($amarillo, inline-block);
+    width: 100%;
+    height: 3.5rem;
+    text-align: center;
+    margin-top: 1rem;
+}

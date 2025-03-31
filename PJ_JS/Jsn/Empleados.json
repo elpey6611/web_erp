@@ -1,0 +1,28 @@
+{
+    "empleados": [
+        {
+            "id": 1,
+            "nombre": "Juan",
+            "apellido": "Macabeo",
+            "puesto": "Analista"
+        },
+        {
+            "id": 2,
+            "nombre": "Roberto",
+            "apellido": "Moreno",
+            "puesto": "Operador"
+        },
+        {
+            "id": 3,
+            "nombre": "Nancy",
+            "apellido": "Santos",
+            "puesto": "Analista de Seguros"
+        },
+        {
+            "id": 4,
+            "nombre": "Caleb",
+            "apellido": "Garcia",
+            "puesto": "Dise e Instalacion de Camaras de Seguridad"
+        }
+    ]
+}
